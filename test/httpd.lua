@@ -1,6 +1,10 @@
 local clock = require 'clock'
 local pkg = { t0 = clock.time(), counter = 0 }
 
+--
+-- отличный модуль, если не считать отсутствие по нынешнее время обработки multipart/form-data,
+-- что легко допиливается самостоятельно, если очень надо
+--
 local server = require('http.server').new( app.config.httpd.host, app.config.httpd.port )
 
 local output = function( req, code, res )
@@ -50,7 +54,7 @@ end
 -- триггер для логирования запросов в БД
 --
 box.space.test:on_replace(function(old, new, space, op)
-	local msg = op:upper() ..' in `'.. space ..'` with key: '.. (new.key or old.key)
+	local msg = op:upper() ..' in `'.. space ..'` with key: '.. (new and new.key or old.key)
 	-- жутко медленная фигня, лучше не юзать в таких местах; но мы ведь дебажим...
 	-- а попутно я таким образом показываю, что в курсе о триггерах)) в том числе о before_replace, где можно кортеж исправить
 	log.info(msg)

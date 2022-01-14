@@ -1,4 +1,4 @@
-max_queries_per_second: 5
+max_queries_per_second: 1
 httpd:
   host: null
   port: null
