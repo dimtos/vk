@@ -58,7 +58,10 @@ local config = ''
 for line in io.lines('config.yaml') do config = config .. line ..'\n' end
 config = yaml.decode(config)
 
-app = -- наш собстывенный глобальный объект, в котором будем хранить всё, что нужно, дабы не мусорить в _G
+--
+-- наш собстывенный глобальный объект, в котором будем хранить всё, что нужно, дабы не мусорить в _G
+--
+app =
 {
 	config = config,
 }
