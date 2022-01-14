@@ -58,13 +58,9 @@ local config = ''
 for line in io.lines('config.yaml') do config = config .. line ..'\n' end
 config = yaml.decode(config)
 
-app =
+app = -- наш собстывенный глобальный объект, в котором будем хранить всё, что нужно, дабы не мусорить в _G
 {
-	config = -- конфиг вынести в файл YAML
-	{
-		max_queries_per_second = 1,
-		httpd = {},
-	},
+	config = config,
 }
 
 app.config.httpd.host, app.config.httpd.port = unpack(( __INSTANCE_SETTINGS__.host.httpd:split(':') )) -- представляется, что там логичнее хранить эти настройки
