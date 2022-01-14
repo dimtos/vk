@@ -16,9 +16,9 @@ end
 --
 -- по-старинке прочитаем файл, а можно заюзать модуль fio из Tarantool-а
 --
-local lines = ''
-for line in io.lines('schema.yaml') do lines = lines .. line end
-local schema = yaml.decode(lines)
+local schema = ''
+for line in io.lines('schema.yaml') do schema = schema .. line ..'\n' end
+schema = yaml.decode(schema)
 
 --
 -- в нашем примере подзразумеваем, что схемой занимаются ответственные разрабы, и проверки не требуются
@@ -54,6 +54,10 @@ local preloads = dofile('preload.lua')
 --
 -- наш собственный глобальный основной объект
 --
+local config = ''
+for line in io.lines('config.yaml') do config = config .. line ..'\n' end
+config = yaml.decode(config)
+
 app =
 {
 	config = -- конфиг вынести в файл YAML
