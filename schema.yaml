@@ -1,0 +1,16 @@
+test:
+  engine: memtx
+  format:
+    - name: key
+      type: scalar
+      is_nullable: false
+    - name: value
+      type: map
+      is_nullable: false
+  ___indexes:
+    key:
+      type: TREE
+      unique: true
+      parts:
+        - field: key
+          type: string
