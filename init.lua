@@ -58,7 +58,7 @@ app =
 {
 	config = -- конфиг вынести в файл YAML
 	{
-		max_queries_per_second = 5,
+		max_queries_per_second = 1,
 		httpd = {},
 	},
 }
